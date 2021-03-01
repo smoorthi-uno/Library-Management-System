@@ -41,4 +41,5 @@ urlpatterns = [
     path('borrow/<int:pk>/delete/', views.borrow_delete, name='borrow_delete'),
 
     path('pdf/', views.borrow_summary_pdf, name='borrow_summary_pdf'),
+    path('pdf/', views.email_borrow_summary_pdf, name='email_borrow_summary_pdf'),
 ]

@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, EmailMessage
 from django.template.loader import get_template
 from library.forms import *
 from library.models import *
@@ -308,3 +308,13 @@ def borrow_summary_pdf(request):
     html = template.render(context)
     pdf = render_to_pdf('library/borrow_summary_pdf.html', context)
     return pdf
+
+
+def email_borrow_summary_pdf(request):
+    email = EmailMessage()
+    email.subject = "Library Management System - Borrowed Books Summary Report"
+    email.body = 'Please find the Summary Report enclosed in the attachment.'
+    email.from_email = settings.EMAIL_HOST_USER
+    email.to = ['request.user.email']
+    email.attach("borrow_pdf.pdf", 'application/pdf')
+    email.send()

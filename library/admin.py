@@ -9,8 +9,8 @@ class MemberExportCsvMixin:
     def export_as_csv(self, request, queryset):
         members = Member.objects.all().only("id", "first_name", "last_name", "email", "mobile_num", "work_phone",
                                             "street_address", "city", "state", "zip", "interests")
-        formatted_field_names = ['Volunteer ID', 'Volunteer Name', 'Email', 'Phone',
-                                 'Work Phone', 'Address', 'City', 'State', 'ZIP', 'Additional Information']
+        formatted_field_names = ['Member ID', 'Member Name', 'Email', 'Phone',
+                                 'Work Phone', 'Address', 'City', 'State', 'ZIP', 'Interests']
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename=Members_report.csv'
         writer = csv.writer(response)
