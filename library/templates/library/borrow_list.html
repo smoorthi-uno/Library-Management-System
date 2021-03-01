@@ -1,0 +1,57 @@
+{% extends 'library/base.html' %}
+{% block content %}
+    <html lang="en">
+    <body>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-heading">
+                    <div class="panel-heading">Borrowed Books Information!</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table class="table table-hover table-responsive-lg">
+                <thead>
+                <tr class="bg-info">
+                    <th>Member</th>
+                    <th>Book Name</th>
+                    <th>Author Name</th>
+                    <th>Genre Name</th>
+                    <th>Issue Date</th>
+                    <th>Return Date</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for borrow in borrows %}
+                    <tr bgcolor="white">
+                        <td>{{ borrow.member }}</td>
+                        <td>{{ borrow.book_name }}</td>
+                        <td>{{ borrow.author_name }}</td>
+                        <td>{{ borrow.genre_name }}</td>
+                        <td>{{ borrow.issue_date }}</td>
+                        <td>{{ borrow.return_date }}</td>
+                        <td><a href="{% url 'library:borrow_edit' pk=borrow.pk %}"
+                               class="btn btn-warning">Edit</a></td>
+                        <td><a href="{% url 'library:borrow_delete' pk=borrow.pk %}"
+                               onclick="return confirm('Are you sure you want to delete?')"
+                               class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="row">
+                <a href="{% url 'library:borrow_new' %}" class="row"><span
+                        class="btn btn-primary">Borrow Book</span></a>
+                <a href="{% url 'library:borrow_summary_pdf' %}" class="row"><span
+                        class="btn btn-primary">Download Borrow Summary Pdf</span></a>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}

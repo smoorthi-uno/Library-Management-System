@@ -1,0 +1,22 @@
+{% extends "library/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-heading">
+                    <div class="panel-heading">Sign up</div>
+                </div>
+            </div>
+        </div>
+        <form method="post" class="custom-form col-md-6" action="{% url 'login' %}">
+            {{ form|crispy }}
+            {% csrf_token %}
+            <br/>
+            <input class="btn-sm btn-primary" type="submit" value="LOGIN"/> &nbsp;
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <a style="font-size: large; font-weight: bold" href="{% url 'password_reset' %}">Forgot password?</a>
+        </form>
+    </div>
+{% endblock %}

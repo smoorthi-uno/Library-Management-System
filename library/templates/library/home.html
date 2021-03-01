@@ -1,0 +1,67 @@
+{% extends 'library/base.html' %}
+{% load static %}
+{% block content %}
+    <html lang="en">
+    <body>
+    <br>
+    <br>
+    <div class="content container">
+        {% if user.is_authenticated %}
+            <header class="jumbotron my-4">
+                <p class="lead"><b>Hello {{ user.username }}, Please choose from below options:</b></p>
+            </header>
+        {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="links">
+                    <!-- Example row of columns -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="{% static "images/icon-books.jpg" %}" style="height: 200px;" alt="books"/>
+                                <div class="caption">
+                                    <h2>Books</h2>
+                                    <p><a class="btn btn-primary" href="{% url 'library:book_list' %}"
+                                          role="button">View details &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="{% static "images/icon-authors.jfif" %}" style="height: 200px" alt="authors"/>
+                                <div class="caption">
+                                    <h2>Authors</h2>
+                                    <p><a class="btn btn-primary" href="{% url 'library:author_list' %}"
+                                          role="button">View details &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="{% static "images/icon-borrow.jpg" %}" style="height: 200px" alt="borrows"/>
+                                <div class="caption">
+                                    <h2>Borrow Books</h2>
+                                    <p><a class="btn btn-primary" href="{% url 'library:borrow_list' %}"
+                                          role="button">View details &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="{% static "images/icon-members.jpg" %}" style="height: 200px"
+                                     alt="members"/>
+                                <div class="caption">
+                                    <h2>Members</h2>
+                                    <p><a class="btn btn-primary" href="{% url 'library:member_list' %}"
+                                          role="button">View details &raquo;</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+{% endblock %}

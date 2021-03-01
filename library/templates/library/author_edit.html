@@ -1,0 +1,24 @@
+{% extends 'library/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <html lang="en">
+    <body>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-heading">
+                    <div class="panel-heading">Edit Author</div>
+                </div>
+            </div>
+        </div>
+        <form action="" method="post" class="custom-form col-md-6">{% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button type="submit" class="save btn btn-primary">Update</button>
+        </form>
+    </div>
+    </body>
+    </html>
+{% endblock %}
